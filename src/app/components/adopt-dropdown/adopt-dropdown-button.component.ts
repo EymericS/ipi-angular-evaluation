@@ -5,7 +5,10 @@ import { Pokemon } from 'src/app/models';
 @Component({
   selector: 'app-adopt-dropdown-button',
   template: `
-    <button class="outlined" (click)="showDropDown = !showDropDown">
+    <button 
+      class="outlined" 
+      (click)="showDropDown = !showDropDown"
+    >
       {{adoptedPokemons.length}} ADOPTED
     </button>
     <app-adopt-dropdown *ngIf="showDropDown"></app-adopt-dropdown>
@@ -28,6 +31,7 @@ export class AdoptDropdownButtonComponent {
   constructor(
     public adoptionService: AdoptionService
   ) { 
-    this.adoptionService.adoptionList.subscribe(list => this.adoptedPokemons = list);
+    this.adoptionService.adoptionList
+      .subscribe(list => this.adoptedPokemons = list);
   }
 }

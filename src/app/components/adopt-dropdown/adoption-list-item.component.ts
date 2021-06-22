@@ -8,7 +8,12 @@ import { Pokemon } from 'src/app/models';
     <ng-template [ngIf]="pokemon">
       <img [src]="pokemon.sprites.other['official-artwork'].front_default">
       <h2>{{pokemon.name}}</h2>
-      <button class="outlined" (click)="adoptionService.unadopt(pokemon)">REMOVE</button>
+      <button 
+        class="outlined" 
+        (click)="adoptionService.unadopt(pokemon)"
+      >
+        REMOVE
+      </button>
     </ng-template>
   `,
   styles: [`

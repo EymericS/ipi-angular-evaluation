@@ -7,17 +7,22 @@ import { Pokemon } from "./models";
     providedIn: 'root'
 })
 export class AdoptionService {
-    public _adoptionList = new BehaviorSubject<Pokemon[]>([]);
+    private _adoptionList = new BehaviorSubject<Pokemon[]>([]);
 
     get adoptionList(): Observable<Pokemon[]> {
         return this._adoptionList.asObservable();
     }
 
     adopt(pokemon: Pokemon) {
-        this._adoptionList.next([...this._adoptionList.value, pokemon]);
+        this._adoptionList.next([
+            ...this._adoptionList.value,
+            pokemon
+        ]);
     }
 
     unadopt(pokemon: Pokemon) {
-        this._adoptionList.next(this._adoptionList.value.filter(p => pokemon.id !== p.id));
+        this._adoptionList.next(
+            this._adoptionList.value.filter(p => pokemon.id !== p.id)
+        );
     }
 }

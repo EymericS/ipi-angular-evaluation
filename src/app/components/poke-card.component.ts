@@ -7,6 +7,7 @@ import { Pokemon } from '../models';
   template: `
     <ng-template [ngIf]="pokemon">
       <h1>{{pokemon.name}}</h1>
+
       <div class="flex">
         <div>
           <section>
@@ -15,16 +16,19 @@ import { Pokemon } from '../models';
               <li *ngFor="let type of pokemon.types">{{type.type.name}}</li>
             </ul>
           </section>
+
           <section>
             <h2>Abilities:</h2>
             <ul><li *ngFor="let ability of pokemon.abilities">{{ability.ability.name}}</li></ul>
           </section>
+
           <section>
             <h2>Weight:</h2><span>{{pokemon.weight}}kg</span>
           </section>
         </div>
         <img [src]="pokemon.sprites.other['official-artwork'].front_default" alt="">
       </div>
+
       <button [class.outlined]="adopted" (click)="adopted
         ? adoptionService.unadopt(pokemon) 
         : adoptionService.adopt(pokemon)"
@@ -91,6 +95,6 @@ export class PokeCardComponent {
         // Si l'id du pokemon est dans la liste
         // Alors il est adopte
         .find(p => this.pokemon?.id === p.id) !== undefined
-    })
+    });
   }
 }
