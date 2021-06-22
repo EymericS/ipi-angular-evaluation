@@ -8,8 +8,8 @@ Une fois votre devoir terminer, envoyer le moi par mail à l'adresse : ange.pica
 
 ## Informations
 
-Nom:   
-Prenom:  
+Nom: **SERTGOZ**
+Prenom: **Eymeric**
 
 ## Question ouvertes
 
@@ -18,37 +18,43 @@ Merci de répondre avec vos mots, même s'ils sont inexactes, je veux voir que v
 ### Qu'est qu'Angular et quel est son intérêt ?
 
 ```
-Votre réponse
+Angular est un framework en TypeScript créé pas des équipes de Google.
+Il permet de créer des Single Page Application : Le front est composé d'une seul page ou tout est géré pas le TypeScript ou une fois interprété JavaScript.
+Angular suis une architecture Model Vue Controller.
+
+Cependant nous avaons utilisé dans ce cours AngularJS, une version qui ne repose pas sur le concept de MVC mais de components.
 ```
 
 ### Qu'est-ce-qu'un composant
 
 ```
-Votre réponse
+Un conponent est une class TypeScript propre à AngularJS servant a réprésernté / manipuler une portion de l'application / vue.
 ```
 
-### Comment est découper un composant dans Angular ?
+### Comment est découpé un composant dans Angular ?
 
 ```
-Votre réponse
+Un compsant est composé d'une class TypeScript contenant des méthodes et des atributs ainsi que de la configuration propore à Angular.
+Ils sont aussi composé d'une partie "template" contenant le code HTML/CSS/JS pour générer pour le composant.
 ```
-
 ### Pourquoi vaut-il mieux faire de petit composant ?
 
 ```
-Votre réponse
+De multiple chose peuvent être fais dans un composant. L'idéal est donc de découpe ça maquette ne un maximum de components permettant de gardé une logic la moi complexe possible.
+L'utilisation de component permet aussi de rendre sont code modulaire et réutilisable. En d'autre mot une scalabilité facilité.
 ```
 
 ### A quoi sert un service ?
 
 ```
-Votre réponse
+Contrairement au composant qui utilise une porté local, les services permette la gestion et le partage de données entre composant.
 ```
 
 ### Qu'est-ce-qu'un observable, et quel est son intérêt ?
 
 ```
-Votre réponse
+A l'instar des promesse en JavaScript Vanilla il permettent un progrmatino asyncrhone de manière "réactive".
+Un observable est un objet qui emet des informations permettant d'y réagir l'orsque l'on y est inscrit.
 ```
 
 ## Exercice 1
