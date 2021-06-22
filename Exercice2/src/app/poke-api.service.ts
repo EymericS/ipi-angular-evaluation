@@ -11,16 +11,20 @@ export class PokeAPIService {
         private client: HttpClient
     ) { }
 
-    fetchPokemons() {
+    fetchPokemons(url :string) {
+      if(url == "")
         return this.client
-            .get<PagedAPIResult<PokemonInfo>>('https://pokeapi.co/api/v2/pokemon');
+            .get<PagedAPIResult<PokemonInfo>>("https://pokeapi.co/api/v2/pokemon/");
+      else
+        return this.client
+          .get<PagedAPIResult<PokemonInfo>>(url);
     }
 
     fetchFullPokemonForPage(page: PagedAPIResult<PokemonInfo>): Observable<Pokemon[]> {
         // Combine latest nous permet de prendre un tableau d'observable
         // Et de le transformer en un observable de tableau
         // On attend que chaque requete ait fini pour les regrouper
-        
+
         const requests = page.results
             // .map sur le tableau de resultat permet de mapper chaque (PokemonInfo) vers un (Pokemon)
             .map(pInfo => this.fetchPokemon(pInfo.url));

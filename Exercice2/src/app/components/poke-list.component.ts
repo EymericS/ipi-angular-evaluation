@@ -6,8 +6,11 @@ import { PokeAPIService } from '../poke-api.service';
 @Component({
   selector: 'app-poke-list',
   template: `
-    <app-poke-card 
-      *ngFor="let pokemon of pokemons" 
+    <button [disabled]="prevURL == ''" (click)="prevPage()">previous</button>
+    {{pageNumber}}
+    <button [disabled]="nextURL == ''" (click)="nextPage()">next</button>
+    <app-poke-card
+      *ngFor="let pokemon of pokemons"
       [pokemon]="pokemon"
     ></app-poke-card>
   `,
@@ -22,18 +25,40 @@ import { PokeAPIService } from '../poke-api.service';
 })
 export class PokeListComponent {
   pokemons: Pokemon[] = [];
+  pageNumber: number = 1;
+  nextURL:string = "";
+  prevURL:string = "";
+
 
   constructor(
     public pokeService: PokeAPIService
   ) {
-    pokeService
-      .fetchPokemons()
+    this.useService("");
+  }
+
+  useService(url:string) {
+    this.pokeService
+      .fetchPokemons("")
       .pipe(
         // Transformation sur le flux
         // On transforme chaque valeur (PagedAPIResult<PokemonInfo>) en liste de pokemon (Pokemon[])
         // Merge map nous permet de faire la transformation
-        mergeMap(pagedResult => this.pokeService.fetchFullPokemonForPage(pagedResult))
+        mergeMap((pagedResult) => {
+          this.nextURL = pagedResult.next != undefined ? pagedResult.next : "";
+          this.prevURL = pagedResult.previous != undefined ? pagedResult.previous : "";
+          return this.pokeService.fetchFullPokemonForPage(pagedResult);
+        })
       )
       .subscribe(pokemons => this.pokemons = pokemons)
+  }
+
+  nextPage() {
+    this.useService(this.nextURL);
+    this.pageNumber++;
+  }
+
+  prevPage() {
+    this.useService(this.prevURL);
+    this.pageNumber--;
   }
 }
